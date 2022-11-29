@@ -1,0 +1,110 @@
+.App {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.addpeople-section {
+  width: 375px;
+  background-color: #c0ecff;
+  height: 100vh;
+}
+.inner-section {
+  padding: 15px;
+}
+
+.relationship-section {
+  width: calc(100vw - 375px);
+  background-color: #98dcf9;
+  height: 100vh;
+}
+
+button {
+  padding: 8px 12px;
+  border: 1px solid #0a0a0a;
+  background-color: transparent;
+  cursor: pointer;
+}
+input {
+  padding: 8px 12px;
+  border: 1px solid #0a0a0a;
+}
+
+/*
+ * Custom Select box  
+*/
+
+select {
+  appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  z-index: 1;
+  outline: none;
+  text-transform: capitalize;
+}
+select::-ms-expand {
+  display: none;
+}
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  position: relative;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid #777;
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.5;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  margin-bottom: 25px;
+  text-transform: capitalize;
+}
+.select select,
+.select::after {
+  grid-area: select;
+}
+.select:not(.select--multiple)::after {
+  content: "";
+  justify-self: end;
+  width: 0.8em;
+  height: 0.5em;
+  background-color: #777;
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+}
+select:focus + .focus {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border: 2px solid #98dcf9;
+  border-radius: inherit;
+}
+
+.select--disabled {
+  cursor: not-allowed;
+  background-color: #eee;
+  background-image: linear-gradient(to top, #ddd, #eee 33%);
+}
+label {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+.select + label {
+  margin-top: 2rem;
+}
+
+.select-option {
+  text-transform: capitalize;
+}
