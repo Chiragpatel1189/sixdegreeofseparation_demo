@@ -16,7 +16,7 @@ export const ConnectionSelection = styled.div`
   /* width: 600px; */
 
   > div {
-    width: 40%;
+    width: 50%;
 
     .userBox {
       display: flex;

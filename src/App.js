@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import AddFriends from "./components/AddFriends";
 import AddUser from "./components/AddUser";
@@ -34,10 +34,6 @@ const usersData = [
 
 function App() {
   const [users, setUsers] = useState(usersData);
-
-  useEffect(() => {
-    console.log("users", users);
-  }, [users]);
 
   const addUserHandler = (person) => {
     const newUser = [...users, { ...person, id: users.length + 1 }];

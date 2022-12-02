@@ -35,13 +35,16 @@ const AddFriends = ({ allusers, addFriendFn }) => {
   return (
     <>
       <h1>Add Friend(s)</h1>
-      <label htmlFor="standard-select">Select a friend:</label>
+      <label htmlFor="standard-select">Source Person:</label>
       <div className="select">
         <select
           id="standard-select"
           value={selectPerson}
           onChange={(e) => handleChange(e)}
         >
+          <option className="select-option" disabled>
+            Select friend
+          </option>
           {allusers.map((item) => {
             return (
               <option className="select-option" key={item.id} value={item.id}>
@@ -56,12 +59,12 @@ const AddFriends = ({ allusers, addFriendFn }) => {
       {selectPerson !== 0 ? (
         <>
           <label htmlFor="standard-select2">
-            Select your friend for: {sourcePerson ? sourcePerson?.name : ""}
+            Targeted person of : {sourcePerson ? sourcePerson?.name : ""}
           </label>
           <div className="select">
             <select
               id="standard-select2"
-              // value={sourcePerson?.id}
+              // value={selectPerson}
               onChange={(e) => selectSecondFriendFn(e)}
             >
               {allusers.map((item) => {
@@ -81,13 +84,14 @@ const AddFriends = ({ allusers, addFriendFn }) => {
               })}
             </select>
           </div>
-
-          <button onClick={addSelctedFriendFn}>Add Friend</button>
+          {targetedPerson.length !== 0 && selectPerson !== 0 && (
+            <button onClick={addSelctedFriendFn}>Add Friend</button>
+          )}
         </>
       ) : null}
       <p>
         {showStatus
-          ? `Yeay!! now, ${
+          ? `Yeay!! ${
               sourcePerson.name
             } is friend with ${targetedPerson.toString()} `
           : null}

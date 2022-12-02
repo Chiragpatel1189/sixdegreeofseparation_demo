@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   ConnectionPaths,
   ConnectionSelection,
@@ -10,6 +10,10 @@ const MakeRelationship = ({ allusers }) => {
   const [personOne, setPersonOne] = useState("");
   const [personTwo, setPersonTwo] = useState("");
   const [connectionPath, setConnectionPath] = useState([]);
+
+  useEffect(() => {
+    getConnectionsHandler();
+  }, [personOne, personTwo]);
 
   const getConnectionsHandler = () => {
     const obj = {};
@@ -98,7 +102,6 @@ const MakeRelationship = ({ allusers }) => {
                     Get connection path between <strong>{personOne}</strong> and{" "}
                     <strong>{personTwo}</strong>.
                   </p>
-                  <button onClick={getConnectionsHandler}>Show Path</button>
                 </div>
               </>
             ) : null}
@@ -107,7 +110,7 @@ const MakeRelationship = ({ allusers }) => {
                 <>
                   {connectionPath.map((connection, index) => {
                     return (
-                      <>
+                      <Fragment key={index}>
                         <p>Relation Path #{index + 1}</p>
                         <div className="connectionPath" key={index}>
                           {connection.map((connectionNode, index1) => {
@@ -118,21 +121,11 @@ const MakeRelationship = ({ allusers }) => {
                             );
                           })}
                         </div>
-                      </>
+                      </Fragment>
                     );
                   })}
                 </>
-              ) : (
-                <>
-                  {personOne !== "" &&
-                  personTwo !== "" &&
-                  connectionPath.length === 0 ? (
-                    <p>Not connection found.</p>
-                  ) : (
-                    <p>Not connection found.</p>
-                  )}
-                </>
-              )}
+              ) : null}
             </ConnectionPaths>
           </>
         ) : (
